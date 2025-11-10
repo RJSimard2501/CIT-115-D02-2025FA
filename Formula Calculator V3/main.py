@@ -9,6 +9,7 @@ def main():
             import pythagoreanTheorem
             import quadraticFormula
             import vertexForm
+            import randomNumberGenerator
 
         #Error if file missing
         except Exception as err:
@@ -16,22 +17,20 @@ def main():
             print("To get a new version of the calculator click the following link:\n ")
             f.Dividerf()
 
-        #Infinite Loop Variable
-        Dave = 1
-    
         #Infinite Loop
-        while Dave != 0: 
+        while True: 
             print("Welcome to Remi's Formula Calculator! Version 3.0")
             print("Available Calculators include:")
             f.Dividerf()
             print("1) Pythagorean Theorem")
             print("2) Quadratic Formula")
             print("3) Vertex Form")
+            print("4) Random Number Generator")
             f.Dividerf()
 
             #Pick a Calculator
             try: 
-                sWCalc = float(input("Pick a Calculator (1-3)"))
+                sWCalc = float(input("Pick a Calculator (1-4)"))
                 if sWCalc == 1:
                     pythagoreanTheorem.pythagoreanTheoremCalculator()
                 elif sWCalc == 2:
@@ -39,12 +38,12 @@ def main():
                 elif sWCalc == 3:
                     vertexForm.vertexFormCalculator()
                 elif sWCalc == 4:
-                    gradeAverage.gradeAverageCalculator()
+                    randomNumberGenerator.randomNumberGenerator()
                 elif sWCalc == 47:
                     easterEgg()
                 else:
                     print("This field only accepts numbers.")
-                    sWCalc = float(input("Pick a Calculator (1-3)"))
+                    sWCalc = float(input("Pick a Calculator (1-4)"))
                             
             #Given a non number error exception & ask for new input
             except ValueError:

@@ -14,7 +14,7 @@ def pythagoreanTheoremCalculator():
     #Pythagorean Theorem Calculator Loop
     while fLoop != 2:
         try:
-            #Ask for which side to solve for & Convert string to lowecase
+            #Ask for which side to solve for & Convert string to lowercase
             print("Which side are you solving for?")
             print("Type A/B, or C")
             sCalcType = input("Side: ")
