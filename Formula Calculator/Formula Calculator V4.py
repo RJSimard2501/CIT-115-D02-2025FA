@@ -20,10 +20,10 @@ def floatconverter(sinput):
 #Continue using the same calculator? Function
 def scConfirmation():
     while True:
-        fConfrmation = input("Would you like to continue using this calculator? Type Y or N: ")
-        if fConfrmation.upper() == "Y":
+        sCheck = input("Would you like to continue using this calculator? Type Y or N: ")
+        if sCheck.upper() == "Y":
             return 
-        elif fConfrmation.upper() == "N":
+        elif sCheck.upper() == "N":
             return False
         else:
             print("Enter either Y or N")
@@ -52,11 +52,10 @@ def pythagoreanTheoremCalculator():
 
             #Print Results
             Dividerf()
-            print(f"Your C value is: {fCalculation:0.4f}"))
+            print(f"Your C value is: {fCalculation:0.4f}")
 
             #Contine/Go Back to Main
-            scConfirmation()
-            if not scConfermation():
+            if not scConfirmation():
                 break
 
         #Solving for A/B
@@ -74,8 +73,7 @@ def pythagoreanTheoremCalculator():
             print(f"Your missing side value is: {fCalculation:0.4f}")
             
             #Contine/Go Back to Main
-            scConfirmation()
-            if not scConfermation():
+            if not scConfirmation():
                 break
 
         else:
@@ -115,9 +113,8 @@ def quadraticFormulaCalculator():
             print(f"The positive output is: {fPAnswer:0.4f}")
             print(f"The negative output is: {fNAnswer:0.4f}")  
 
-        #Confermation
-        scConfirmation()
-        if not scConfermation():
+        #Confirmation
+        if not scConfirmation():
             break
 
 #Vertex Form Calculator
@@ -140,8 +137,7 @@ def vertexFormCalculator():
         print(f"Your Y value is: {fCalculation:0.04f}")
         
         #Contine/Go Back to Main
-        scConfirmation()
-        if not scConfermation():
+        if not scConfirmation():
             break
 
 #Random Number Generator
@@ -158,13 +154,12 @@ def randomNumberGenerator():
         fOpCount = 0
         while fOpCount < TotalOps:
             fOutput = random.uniform(fMin, fMax)
-            print(f"Random number {fOpCount} is: {fOutput}")
+            print(f"Random number {fOpCount} is: {fOutput:0.4}")
             fOpCount += 1
             Dividerf()
 
-        #Continue? Confermation check
-        scConfirmation()
-        if not scConfermation():
+        #Confirmation check
+        if not scConfirmation():
             break
 
 #Main Function
@@ -202,10 +197,6 @@ def main():
             except ValueError:
                 print("This field only accepts numbers.")
             
-            #Source file does not exist error
-            except NameError:
-                print("The calculator you have sected cannot run because you are missing files!!!\n To a new version of the calculator click the following link:\n")
-
     #General Error handler
     #except Exception as err:
         #print("General error: " + format(err))
