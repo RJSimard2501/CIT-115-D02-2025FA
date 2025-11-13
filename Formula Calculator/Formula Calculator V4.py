@@ -79,7 +79,6 @@ def pythagoreanTheoremCalculator():
         else:
             #Fail Message and re input
             print("This field only accepts 'A', 'B', or 'C'")
-            sCalcType = input("Side: ")
 
 #Quadratic Formula Calculator
 def quadraticFormulaCalculator():
@@ -124,10 +123,10 @@ def vertexFormCalculator():
     #Vertex Form Calculator Loop
     while True:  
         #Get h, k, x, & a Variables
-        fH = floatconverter(input("What is your H value"))
-        fK = floatconverter(input("What is your K value"))
-        fX = floatconverter(input("What is your X value"))
-        fA = floatconverter(input("What is your A value"))
+        fH = floatconverter(input("What is your H value: "))
+        fK = floatconverter(input("What is your K value: "))
+        fX = floatconverter(input("What is your X value: "))
+        fA = floatconverter(input("What is your A value: "))
             
         #Calculation & String conversion
         fCalculation = fA*(fX - fH)**2 + fK
@@ -142,6 +141,7 @@ def vertexFormCalculator():
 
 #Random Number Generator
 def randomNumberGenerator():
+    Dividerf()
     print("Welcome to the Random Number Generator")
 
     while True:
@@ -154,7 +154,7 @@ def randomNumberGenerator():
         fOpCount = 0
         while fOpCount < TotalOps:
             fOutput = random.uniform(fMin, fMax)
-            print(f"Random number {fOpCount} is: {fOutput:0.4}")
+            print(f"Random number {fOpCount} is: {fOutput:0.4f}")
             fOpCount += 1
             Dividerf()
 
@@ -178,7 +178,7 @@ def main():
 
             #Pick a Calculator
             try: 
-                sWCalc = float(input("Pick a Calculator (1-4)"))
+                sWCalc = float(input("Pick a Calculator (1-4): "))
                 if sWCalc == 1:
                     pythagoreanTheoremCalculator()
                 elif sWCalc == 2:
@@ -191,7 +191,7 @@ def main():
 #                    easterEgg()
                 else:
                     print("This field only accepts numbers.")
-                    sWCalc = float(input("Pick a Calculator (1-4)"))
+                    sWCalc = float(input("Pick a Calculator (1-4): "))
                             
             #Given a non number error exception & ask for new input
             except ValueError:
