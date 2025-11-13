@@ -1,8 +1,8 @@
-#Greet the User & Define Main
+#Main Function
 def main():
     #try:
         
-        #Imports
+        #Attempt Imports
         try:
             import formating as f
             import math
@@ -17,7 +17,7 @@ def main():
             print("To get a new version of the calculator click the following link:\n ")
             f.Dividerf()
 
-        #Infinite Loop
+        #Main Calculator Loop
         while True: 
             print("Welcome to Remi's Formula Calculator! Version 3.0")
             print("Available Calculators include:")
@@ -39,8 +39,8 @@ def main():
                     vertexForm.vertexFormCalculator()
                 elif sWCalc == 4:
                     randomNumberGenerator.randomNumberGenerator()
-                elif sWCalc == 47:
-                    easterEgg()
+#                elif sWCalc == 47:
+#                    easterEgg()
                 else:
                     print("This field only accepts numbers.")
                     sWCalc = float(input("Pick a Calculator (1-4)"))
@@ -58,19 +58,19 @@ def main():
         #print("General error: " + format(err))
           
 #Easter Egg
-def easterEgg():
-    f.Dividerf()
-    print("We don't do that here.")
-    sWCalc = float(input("Pick literaly anything else \n"))
-
-    if sWCalc == 47:
-        print("You asked for it lol.")
-        f.Dividerf()
-        print("https://youtu.be/dQw4w9WgXcQ?si=MnwD2av2qRsYWZXX")
-        f.Dividerf()
-    else:
-        print("Ok, good")
-        main()
+#def easterEgg():
+#    f.Dividerf()
+#    print("We don't do that here.")
+#    sWCalc = float(input("Pick literaly anything else \n"))
+#
+#    if sWCalc == 47:
+#        print("You asked for it lol.")
+#        f.Dividerf()
+#        print("https://youtu.be/dQw4w9WgXcQ?si=MnwD2av2qRsYWZXX")
+#        f.Dividerf()
+#    else:
+#        print("Ok, good")
+#        main()
 
 #Program start
 main()
