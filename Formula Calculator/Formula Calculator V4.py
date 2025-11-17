@@ -3,8 +3,9 @@ import math
 import random
 
 #Formating Functions
+#Divider Function
 def Dividerf():
-    print("_________________________")
+    print("-" * 25)
 
 #String to Float converter
 def floatconverter(sinput):
@@ -17,16 +18,24 @@ def floatconverter(sinput):
         except ValueError:
             sinput = input("Input must be a positive numeric value: ")
 
-#Continue using the same calculator? Function
+#Continue using the same calculator? Function & Close CalcHistory.txt
 def scConfirmation():
     while True:
         sCheck = input("Would you like to continue using this calculator? Type Y or N: ")
         if sCheck.upper() == "Y":
-            return 
+            Dividerf()
+            return True
         elif sCheck.upper() == "N":
+            Dividerf()
             return False
         else:
             print("Enter either Y or N")
+
+#Calc History function
+def calcHistory(sinput):
+    with open("CalcHistory.txt", "a") as outfile:
+        outfile.write(f"{sinput}")
+        outfile.close()
 
 #Calculator Functions
 #Pythagorean Theorem Calculator Function
@@ -39,7 +48,7 @@ def pythagoreanTheoremCalculator():
     while True:
         #Ask for which side to solve for & Convert string to lowercase
         print("Which side are you solving for?")
-        print("Type A/B, or C")
+        print("Type A, B, or C")
         sCalcType = input("Side: ")
    
         if sCalcType.lower() == "c":
@@ -47,11 +56,12 @@ def pythagoreanTheoremCalculator():
             fA = floatconverter(input("What is your A Value?: "))
             fB = floatconverter(input("What is your B Value?: "))
 
-            #Calculation "(A^2 + B^2)/ 0.5"
+            #Calculation "((fA**2)+(fB**2))**0.5"
             fCalculation = ((fA** 2)+(fB** 2))** 0.5
 
             #Print Results
             Dividerf()
+            calcHistory(f"Your C value is: {fCalculation:0.4f}")
             print(f"Your C value is: {fCalculation:0.4f}")
 
             #Contine/Go Back to Main
@@ -70,6 +80,7 @@ def pythagoreanTheoremCalculator():
 
             #Print Results
             Dividerf()
+            calcHistory(f"Your missing side value is: {fCalculation:0.4f}")
             print(f"Your missing side value is: {fCalculation:0.4f}")
             
             #Contine/Go Back to Main
@@ -99,6 +110,7 @@ def quadraticFormulaCalculator():
         #Check if discriminant is negative
         if fDiscriminant < 0:
             Dividerf()
+            calcHistory("No real roots exist :( \n")
             print("No real roots exist :( \n")
         else:
             #Do the positive formula
@@ -109,6 +121,8 @@ def quadraticFormulaCalculator():
 
             #Print outputs
             Dividerf()
+            calcHistory(f"The positive output is: {fPAnswer:0.4f}")
+            calcHistory(f"The negative output is: {fNAnswer:0.4f}")
             print(f"The positive output is: {fPAnswer:0.4f}")
             print(f"The negative output is: {fNAnswer:0.4f}")  
 
@@ -118,7 +132,7 @@ def quadraticFormulaCalculator():
 
 #Vertex Form Calculator
 def vertexFormCalculator():
-    print("Welcome to the Vertex Form Calculator")
+    print("Welcome to the Vertex Form Calculator!")
 
     #Vertex Form Calculator Loop
     while True:  
@@ -133,7 +147,8 @@ def vertexFormCalculator():
 
         #Print outputs & continue
         Dividerf()
-        print(f"Your Y value is: {fCalculation:0.04f}")
+        calcHistory(f"Your Y value is: {fCalculation:0.01f}")
+        print(f"Your Y value is: {fCalculation:0.01f}")
         
         #Contine/Go Back to Main
         if not scConfirmation():
@@ -142,32 +157,46 @@ def vertexFormCalculator():
 #Random Number Generator
 def randomNumberGenerator():
     Dividerf()
-    print("Welcome to the Random Number Generator")
+    print("Welcome to the Random Number Generator!")
 
     while True:
         #Get Range & Number Of Operations 
-        fMin = int(floatconverter(input("What is the minimum number you want to start with: ")))        
-        fMax = int(floatconverter(input("What is the maximum number you want to end with: ")))
+        fMin = floatconverter(input("What is the minimum number you want to start with: "))        
+        fMax = floatconverter(input("What is the maximum number you want to end with: "))
         TotalOps = int(floatconverter(input("How many numbers do you want: ")))
-
+        
         #Get the numbers
         fOpCount = 0
         while fOpCount < TotalOps:
             fOutput = random.uniform(fMin, fMax)
-            print(f"Random number {fOpCount} is: {fOutput:0.4f}")
+            print(f"Random number {fOpCount} is: {fOutput:0.1f}\n")
+            calcHistory(f"Random number {fOpCount} is: {fOutput:0.1f}\n")
             fOpCount += 1
-            Dividerf()
 
         #Confirmation check
+        Dividerf()
         if not scConfirmation():
             break
 
+#Easter Egg
+def easterEgg():
+    global FTEMPER
+    if FTEMPER == 3:
+        print("Check the back...")
+        calcHistory(f"-------------------------\n")
+        calcHistory(f"https://youtu.be/dQw4w9WgXcQ?si=MnwD2av2qRsYWZXX\n")
+        calcHistory(f"-------------------------\n")
+        
+    else:
+        print("This field only accepts numbers.")
+        FTEMPER += 1
+        
 #Main Function
 def main():
     #try:
         #Main Calculator Loop
-        while True: 
-            print("Welcome to Remi's Formula Calculator! Version 3.0")
+        while True:
+            print("\nWelcome to Remi's Formula Calculator! Version 4.0")
             print("Available Calculators include:")
             Dividerf()
             print("1) Pythagorean Theorem")
@@ -177,44 +206,24 @@ def main():
             Dividerf()
 
             #Pick a Calculator
-            try: 
-                sWCalc = float(input("Pick a Calculator (1-4): "))
-                if sWCalc == 1:
-                    pythagoreanTheoremCalculator()
-                elif sWCalc == 2:
-                    quadraticFormulaCalculator()
-                elif sWCalc == 3:
-                    vertexFormCalculator()
-                elif sWCalc == 4:
-                    randomNumberGenerator()
-#                elif sWCalc == 47:
-#                    easterEgg()
-                else:
-                    print("This field only accepts numbers.")
-                    sWCalc = float(input("Pick a Calculator (1-4): "))
-                            
-            #Given a non number error exception & ask for new input
-            except ValueError:
-                print("This field only accepts numbers.")
-            
-    #General Error handler
-    #except Exception as err:
-        #print("General error: " + format(err))
-          
-#Easter Egg
-#def easterEgg():
-#    Dividerf()
-#    print("We don't do that here.")
-#    sWCalc = float(input("Pick literally anything else \n"))
-#
-#    if sWCalc == 47:
-#        print("You asked for it lol.")
-#        Dividerf()
-#        print("https://youtu.be/dQw4w9WgXcQ?si=MnwD2av2qRsYWZXX")
-#        Dividerf()
-#    else:
-#        print("Ok, good")
-#        main()
-
+            sWCalc = floatconverter(input("Pick a Calculator (1-4): "))
+            if sWCalc == 1:
+                calcHistory("\n --- Pythagorean Theorem Calculator --- \n\n")
+                pythagoreanTheoremCalculator()
+            elif sWCalc == 2:
+                calcHistory("\n --- Quadratic Formula Calculator --- \n\n")
+                quadraticFormulaCalculator()
+            elif sWCalc == 3:
+                calcHistory("\n --- Vertex Form Calculator --- \n\n")
+                vertexFormCalculator()
+            elif sWCalc == 4:
+                calcHistory("\n --- Random Number Generator --- \n\n")
+                randomNumberGenerator()
+            elif sWCalc == 47:
+                easterEgg()
+            else:
+                print("This field only accepts numbers (1-4).")
+                        
 #Program start
+FTEMPER = 1
 main()
