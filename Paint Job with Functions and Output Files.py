@@ -20,6 +20,7 @@ def getFloatInput(sinput):
             sinput = input("Input must be a positive numeric value: ")
 
 #Fujnction to Calculate gallons of paint needed
+#math.ceil(x) rounds to the closest int that is >= x
 def getGallonsOfPaint(fSquareFeet, fFeetPerGallon):
     return math.ceil(fSquareFeet / fFeetPerGallon)
 
@@ -36,7 +37,7 @@ def getPaintCost(iTotalGallons, fPaintPrice):
     return iTotalGallons * fPaintPrice
 
 #Get sales tax rate based on state
-#New Hampshire dosn't need to be in the list bc it has a tax rate of 0?
+#New Hampshire dosn't need to be in the list bc tax rate of 0 & will show fine
 def getSalesTax(sState):
     sState = sState.upper()
     if sState == "CT":
@@ -55,27 +56,34 @@ def getSalesTax(sState):
     return fTaxrate
 
 #Show cost estimate and write to file
-def showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate):
+def showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate, iTotalGallons):
+
+    #Add totals
     fSubtotal = fPaintCost + fLaborCost
     fTaxAmount = fSubtotal * fSalesTaxRate
     fTotalCost = fSubtotal + fTaxAmount
 
     #Print outputs
-    print(f"Paint Cost: {fPaintCost:.2f}")
-    print(f"Labor Cost:  {fLaborCost:.2f}")
-    print(f"Sales Tax Rate: {fSalesTaxRate:.2f}")
-    print(f"Tax Amount: {fTaxAmount:.2f}")
+    print(f"Gallons of paint: {iTotalGallons}")
+    print(f"Hours of Labor: {fTotalLaborHours}")
+    print(f"Paint Charges: {fPaintCost:.2f}")
+    print(f"Labor Charges: {fLaborCost:.2f}")
+    print(f"Tax: {fTaxAmount:.2f}")
     print(f"Total Cost: {fTotalCost:.2f}")
 
     #Write to a file with users name
     sFileName = f"{sLastName}_PaintJobOutput.txt"
     outfile = open(sFileName, "w")
-    outfile.write(f"Paint Cost:  {fPaintCost:.2f}\n")
-    outfile.write(f"Labor Cost: {fLaborCost:.2f}\n")
-    outfile.write(f"Sales Tax Rate: {fSalesTaxRate:.2f}\n")
-    outfile.write(f"Tax Amount: {fTaxAmount:.2f}\n")
+    outfile.write(f"Gallons of paint: {iTotalGallons}")
+    outfile.write(f"Hours of Labor: {fTotalLaborHours}")
+    outfile.write(f"Paint Charges: {fPaintCost:.2f}")
+    outfile.write(f"Labor Charges: {fLaborCost:.2f}")
+    outfile.write(f"Tax: {fTaxAmount:.2f}")
     outfile.write(f"Total Cost: {fTotalCost:.2f}")
     outfile.close()
+
+    #Print file created confirmation
+    print(f"File: {sFileName}")
 
 #Main function
 def main():
@@ -99,7 +107,7 @@ def main():
     fSalesTaxRate = getSalesTax(sState)
 
     #Show and save estimate
-    showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate)
+    showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate, iTotalGallons)
 
 #Program start
 main()
