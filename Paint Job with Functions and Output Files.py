@@ -56,8 +56,7 @@ def getSalesTax(sState):
     return fTaxrate
 
 #Show cost estimate and write to file
-def showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate, iTotalGallons):
-
+def showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate, iTotalGallons, fTotalLaborHours):
     #Add totals
     fSubtotal = fPaintCost + fLaborCost
     fTaxAmount = fSubtotal * fSalesTaxRate
@@ -85,6 +84,7 @@ def showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate, iTotalGal
     #Print file created confirmation
     print(f"File: {sFileName}")
 
+
 #Main function
 def main():
 
@@ -107,7 +107,7 @@ def main():
     fSalesTaxRate = getSalesTax(sState)
 
     #Show and save estimate
-    showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate, iTotalGallons)
+    showCostEstimate(sLastName, fPaintCost, fLaborCost, fSalesTaxRate, iTotalGallons, fTotalLaborHours)
 
 #Program start
 main()
