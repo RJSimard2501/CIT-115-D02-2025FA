@@ -1,7 +1,4 @@
-import random
-import math
+sQuote = "Python is a great programming language"
+ 
 
-iTotal = 0
-for iCount in range(4,6):
-    iTotal += iCount
-    print(iTotal)
+sQuote.find("Dan") 

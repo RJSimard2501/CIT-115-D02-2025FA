@@ -1,8 +1,8 @@
-#Currency format function
+#Format Currency function
 def formatCurrency(finput):
     return f"$     {finput:,.2f}"
 
-#Convert to float function
+#Convert from sting to Float function
 def getFloatInput(sinput):
     while True:
         #Strip input to remove extra spaces
@@ -32,10 +32,10 @@ def getMedian(sales):
     mid = n // 2
 
     if n % 2 == 1:
-        #Odd count: middle element (0-based indexing)
+        #Get middle if odd
         return float(lSortedValues[mid])
     else:
-        #Even count: average the two middle elements
+        #Average if even
         return (lSortedValues[mid - 1] + lSortedValues[mid]) / 2.0
 
 #Main
@@ -44,7 +44,7 @@ def main():
     #Create Sales list
     sales: list[float] = []
 
-    #Start entry loop
+    #Ask for Property sales input
     while True:
         fSalesPrice = getFloatInput(input("Enter property sales value:"))
         sales.append(fSalesPrice)
@@ -55,20 +55,21 @@ def main():
             if sContinue.strip().upper() == "Y" or "N":
                 break
             else:
+                print("Enter only Y or N,")
                 continue
 
-        #If "n" End Loop
-        if sContinue == "n":
+        #If "N" End Loop
+        if sContinue == "N":
             break
 
-    #Sort ascending
+    #Sort list in ascending order
     sales.sort()
 
     #Output: Individual entries
-    for idx, amount in enumerate(sales, start=1):
+    for idx, amount in enumerate(sales, 1):
         print(f"Property {idx:2d} {formatCurrency(amount)}")
 
-    #Analytics 
+    #Calculate the math 
     minimum = min(sales)
     maximum = max(sales)
     total = sum(sales)
@@ -76,7 +77,7 @@ def main():
     median = getMedian(sales)
     commission = total * 0.03
 
-    #Output: Analytics formatted as currency
+    #Print the new values and format
     print(f"Minimum:   {formatCurrency(minimum)}")
     print(f"Maximum:   {formatCurrency(maximum)}")
     print(f"Total:     {formatCurrency(total)}")
